@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class Mapper {
 
     public User mapToUserEntity(UserInsertDTO insertDTO) {
-        return new User(insertDTO.Username(), insertDTO.password());
+        return new User(insertDTO.username(), insertDTO.password());
     }
 
     public UserReadOnlyDTO mapToUserReadOnlyDTO(User user) {
@@ -30,7 +30,7 @@ public class Mapper {
 
         UserInsertDTO userDTO = dto.userInsertDTO();
         User user = new User();
-        user.setUsername(userDTO.Username());
+        user.setUsername(userDTO.username());
         user.setPassword(userDTO.password());
 
         teacher.addUser(user);

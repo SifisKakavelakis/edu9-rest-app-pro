@@ -34,8 +34,8 @@ public class UserService implements IUserService {
     public UserReadOnlyDTO saveUser(UserInsertDTO userInsertDTO)
             throws EntityAlreadyExistsException, EntityInvalidArgumentException {
         try {
-            if (userRepository.findByUsername(userInsertDTO.Username()).isPresent()) {
-                throw new EntityAlreadyExistsException("User", "User with username=" + userInsertDTO.Username() + " already exists");
+            if (userRepository.findByUsername(userInsertDTO.username()).isPresent()) {
+                throw new EntityAlreadyExistsException("User", "User with username=" + userInsertDTO.username() + " already exists");
             }
 
             User user = mapper.mapToUserEntity(userInsertDTO);
@@ -45,13 +45,13 @@ public class UserService implements IUserService {
                     .orElseThrow(() -> new EntityInvalidArgumentException("Role", "Role with id=" + userInsertDTO.roleId() + " does not exist"));
             role.addUser(user);
             userRepository.save(user);
-            log.info("User with username={} saved successfully", userInsertDTO.Username());
+            log.info("User with username={} saved successfully", userInsertDTO.username());
             return mapper.mapToUserReadOnlyDTO(user);
         } catch (EntityAlreadyExistsException e) {
-            log.error("Save failed. User with username={} already exists", userInsertDTO.Username());
+            log.error("Save failed. User with username={} already exists", userInsertDTO.username());
             throw e;
         } catch (EntityInvalidArgumentException e) {
-            log.error("Save failed. Invalid arguments for user with username={}", userInsertDTO.Username());
+            log.error("Save failed. Invalid arguments for user with username={}", userInsertDTO.username());
             throw e;
         }
     }
