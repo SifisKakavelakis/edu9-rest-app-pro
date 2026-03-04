@@ -74,8 +74,8 @@ public class TeacherServiceImpl implements ITeacherService {
                 throw new EntityAlreadyExistsException("AMKA", "User with AMKA " + dto.personalInfoInsertDTO().amka() + " already exists");
             }
 
-            if (userRepository.findByUsername(dto.userInsertDTO().username()).isPresent()) {
-                throw new EntityAlreadyExistsException("Username", "User with username " + dto.userInsertDTO().username() + " already exists");
+            if (userRepository.findByUsername(dto.userInsertDTO().Username()).isPresent()) {
+                throw new EntityAlreadyExistsException("Username", "User with username " + dto.userInsertDTO().Username() + " already exists");
             }
 
             if (personalInfoRepository.findByIdentityNumber(dto.personalInfoInsertDTO().identityNumber()).isPresent()) {
