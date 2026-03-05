@@ -87,4 +87,9 @@ public class UserService implements IUserService {
             throw e;
         }
     }
+    @Override
+    @Transactional(readOnly = true)
+    public boolean isUserExists(String username) {
+        return userRepository.findByUsername(username).isPresent();
+    }
 }
